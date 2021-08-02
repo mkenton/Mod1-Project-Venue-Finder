@@ -10,7 +10,7 @@ Project for phase 1 - single page web app - restaurant/venue finder based on mul
 ### Features ###
 Given a list of departure points (physical addresses), the app will deliver the highly rated restaurants using google map API within reasonable distance from the addresses provided.
 
-![Example](https://github.com/mkenton/Mod1-Project-Venue-Finder/blob/adding_image/example.PNG)
+![Example](https://github.com/mkenton/Mod1-Project-Venue-Finder/blob/main/example.PNG)
   
 ### User Story ###
 * as a user, you should be able to input a list of addresses representing locations of departure of everyone
