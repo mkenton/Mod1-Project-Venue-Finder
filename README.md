@@ -1,8 +1,4 @@
-# Mod1-Project-Venue-Finder #
-Project for phase 1 - single page web app - restaurant/venue finder based on multiple starting address input
-
-
-## Simple Restaurant Finder ##
+# Group Central Venue Locator #
 
 ### Author: Sungoh Park*, Michael Kenton*
 *Authors contributed equally to this project.
