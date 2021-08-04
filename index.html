@@ -2,34 +2,34 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Venue Finder</title>
-  <style>
-    #counter {
-      background-color: black;
-      color: white;
-      display: table;
-      padding: 10px;
+  <title>Central Venue Locator</title>
+  <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
+  <script defer src="./config.js"></script>
+  <script defer src="./index.js"></script>
+  <style type="text/css">
+    #map {
+      height: 500px;
+      width: 100%;
     }
   </style>
 </head>
 <body>
     <h1>
-        Venue Finder
+      Central Venue Locator
     </h1>
+    <div id="map"></div>
     <h1>
-    Input Adresses
+    Input Addresses
     </h1>
-    <button id='minus' > ➖ </button>
-    <button id='plus' > ➕ </button>
-    <form>
-    <input type='text'>
-    <button id='SubmitAddress'>submit</button>
+    <form id="addressInputForm">
+      <input id='addressTextInput' type='text' placeholder="Type new address here">
+      <button id='submitAddress'>Submit</button>
     </form>
-    <button id='vote'>vote</button>
-
-
+    <div id='addressList'></div>
+ 
     <!-- <script src="js/index.min.js"></script> -->
-    <script defer src="js/index.js"></script>
+
+
 </body>
 </html>
 
