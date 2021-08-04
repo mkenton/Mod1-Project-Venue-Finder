@@ -89,8 +89,8 @@ function handleSubmitButtonEvent(map) {
   }) 
 }
 
+let currentAvgLatLng;
 let markerAvgLatLng;
-
 function placeMarkerAvgLatLng(map) {
   markerAvgLatLng = new google.maps.Marker({
     position: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
@@ -128,6 +128,7 @@ function geocodeAddress(geocoder, resultsMap) {
     .then(({ results }) => {
       // console.log(results[0])
       geocodedAddressObjectArray.push(results[0]);
+      currentAvgLatLng = [avgLatLng()[0], avgLatLng()[1]];
       resultsMap.setCenter({ lat: avgLatLng()[0], lng: avgLatLng()[1] });
       new google.maps.Marker({
         map: resultsMap,
