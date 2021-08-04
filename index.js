@@ -3,6 +3,8 @@ const addressInputForm = document.querySelector('form#addressInputForm')
 const addressSubmitButtonElement = document.querySelector('button#submitAddress');
 const addressInputTextElement = document.querySelector('input#addressTextInput');
 const addressDisplayParentElement = document.querySelector('div#addressList');
+const searchTermInputTextElement = document.querySelector('input#searchTerm');
+const searchTermSubmitButtonElement = document.querySelector('button#submitSearch')
 let geocodedAddressObjectArray = [];
 let map
 const icons = {
@@ -25,7 +27,8 @@ function initMap() {
     zoom: 10,
     center: originCoord,
   });
-  handleSubmitButtonEvent(map)
+  handleAddressSubmitButtonEvent(map)
+  handleSearchSubmitButtonEvent(map)
 }
 
 // keep an array that stores the id of the submitted address idArray = [0,1,2,3...]
@@ -64,7 +67,7 @@ function addNewAddress(newAddress) {
   addressDisplayParentElement.append(newAddress);
 }
 
-function handleSubmitButtonEvent(map) {
+function handleAddressSubmitButtonEvent(map) {
   addressSubmitButtonElement.addEventListener('click', function (event) {
     event.preventDefault();
     const newAddress = document.createElement("p");
@@ -92,6 +95,13 @@ function handleSubmitButtonEvent(map) {
 
 
 
+  })
+}
+
+function handleSearchSubmitButtonEvent(map) {
+  searchTermSubmitButtonElement.addEventListener('click', function (event) {
+    event.preventDefault();
+    getPlacesNearCenter();
   })
 }
 
@@ -176,7 +186,7 @@ function getPlacesNearCenter() {
   let request = {
       location: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
       rankBy: google.maps.places.RankBy.DISTANCE,
-      keyword: 'sushi'
+      keyword: searchTermInputTextElement.value
       // keyword: ${searchTerm} // TODO: use correct variable
   }
   placeSearchService = new google.maps.places.PlacesService(map);
