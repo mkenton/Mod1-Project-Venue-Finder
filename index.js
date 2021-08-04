@@ -7,14 +7,16 @@ function initMap() {
     const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
     const originCoord = newYorkCoord;
     // The map, centered at New York
-    const geocoder = new google.maps.Geocoder();
+    // const geocoder = new google.maps.Geocoder();
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 8,
       center: originCoord,
     });
+    handleSubmitButtonEvent(map)
 }
  
-addressSubmitButtonElement.addEventListener('click', function(event) {
+function handleSubmitButtonEvent(map) {
+  addressSubmitButtonElement.addEventListener('click', function(event) {
       event.preventDefault();
       const newAddress = document.createElement("p");
       newAddress.innerText = addressInputTextElement.value + " ";
@@ -44,7 +46,8 @@ addressSubmitButtonElement.addEventListener('click', function(event) {
       //   map: map,
       // });
 
-}) 
+  }) 
+}
 
 // function geocodeAddress(geocoder, resultsMap) {
 //   const address = addressInputTextElement.value;
