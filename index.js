@@ -91,6 +91,8 @@ function handleSubmitButtonEvent(map) {
 
 let currentAvgLatLng;
 let markerAvgLatLng;
+let searchRangeCircle;
+
 function placeMarkerAvgLatLng(map) {
   markerAvgLatLng = new google.maps.Marker({
     position: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
@@ -102,10 +104,13 @@ function placeMarkerAvgLatLng(map) {
 function avgMarkerUpdate(map) {
   if (markerAvgLatLng === undefined) {
     placeMarkerAvgLatLng(map);
+    searchRangeCircle = showSearchRange(map, { lat: avgLatLng()[0], lng: avgLatLng()[1] })
   }
   else {
     markerAvgLatLng.setMap(null);
     placeMarkerAvgLatLng(map);
+    searchRangeCircle.setMap(null);
+    searchRangeCircle = showSearchRange(map, { lat: avgLatLng()[0], lng: avgLatLng()[1] })
   }
 }
 
@@ -119,6 +124,19 @@ function avgLatLng() {
   avgLatitude = sumLatitude/(geocodedAddressObjectArray.length);
   avgLongitude = sumLongitude/(geocodedAddressObjectArray.length);
   return [avgLatitude, avgLongitude]
+}
+
+function showSearchRange(map, location) {
+  const options = {
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 1,
+    map: map,
+    center: location,
+    radius: 3000
+  }
+  const circle = new google.maps.Circle(options);
+  return circle;
 }
 
 function geocodeAddress(geocoder, resultsMap) {
