@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Central Venue Locator</title>
@@ -13,23 +14,28 @@
     }
   </style>
 </head>
+
 <body>
-    <h1>
-      Central Venue Locator
-    </h1>
-    <div id="map"></div>
-    <h1>
+  <h1>
+    Central Venue Locator
+  </h1>
+  <div id="map"></div>
+  <h1>
     Input Addresses
-    </h1>
-    <form id="addressInputForm">
-      <input id='addressTextInput' type='text' placeholder="Type new address here">
-      <button id='submitAddress'>Submit</button>
-    </form>
-    <div id='addressList'></div>
- 
-    <!-- <script src="js/index.min.js"></script> -->
+  </h1>
+  <form id="addressInputForm">
+    <input id='addressTextInput' type='text' placeholder="Type new address here">
+    <button id='submitAddress'>Submit</button>
+  </form>
+  <div id='addressList'></div>
+  <form id="searchForm" action="" method="POST">
+    <label for="searchTerm">Search for:</label>
+    <input id="searchTerm" type="text" name="searchTerm" placeholder="Enter food or activity!">
+    <input type="submit" value="Search for Central Venue">
+  </form>
+  <!-- <script src="js/index.min.js"></script> -->
 
 
 </body>
-</html>
 
+</html>
