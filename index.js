@@ -4,6 +4,11 @@ const addressSubmitButtonElement = document.querySelector('button#submitAddress'
 const addressInputTextElement = document.querySelector('input#addressTextInput');
 const addressDisplayParentElement = document.querySelector('div#addressList');
 let geocodedAddressObjectArray = [];
+const icons = {
+  person: "img/icon_person.png",
+  center: "img/icon_center.png"
+}
+
 
 function initMap() {
     const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
@@ -11,7 +16,7 @@ function initMap() {
     // The map, centered at New York
     // const geocoder = new google.maps.Geocoder();
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 8,
+      zoom: 10,
       center: originCoord,
     });
     handleSubmitButtonEvent(map)
@@ -65,30 +70,71 @@ function handleSubmitButtonEvent(map) {
       const geocoder = new google.maps.Geocoder();
       geocodeAddress(geocoder, map)
       
-      addressInputForm.reset();
-      
-      // const marker = new google.maps.Marker({
-      //   position: originCoord,
+      //put marker on avgLatLong()
+      // avgMarkerUpdate();
+      // console.log(avgLatLng())
+
+      // markerAvgLatLng = new google.maps.Marker({
+      //   position: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
       //   map: map,
       // });
+
+      // console.log(avgLatLng())
+
+
+      addressInputForm.reset();
+ 
+
 
   }) 
 }
 
+let markerAvgLatLng;
 
+function placeMarkerAvgLatLng(map) {
+  markerAvgLatLng = new google.maps.Marker({
+    position: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
+    map: map,
+    icon: icons.center
+  });
+}
+
+function avgMarkerUpdate(map) {
+  if (markerAvgLatLng === undefined) {
+    placeMarkerAvgLatLng(map);
+  }
+  else {
+    markerAvgLatLng.setMap(null);
+    placeMarkerAvgLatLng(map);
+  }
+}
+
+function avgLatLng() {
+  let sumLatitude = 0, sumLongitude = 0, avgLatitude, avgLongitude;
+  for (let i = 0; i < geocodedAddressObjectArray.length; i++) {
+    sumLatitude += geocodedAddressObjectArray[i].geometry.location.lat();
+    sumLongitude += geocodedAddressObjectArray[i].geometry.location.lng();
+  }
+  // console.log(geocodedAddressObjectArray.length)
+  avgLatitude = sumLatitude/(geocodedAddressObjectArray.length);
+  avgLongitude = sumLongitude/(geocodedAddressObjectArray.length);
+  return [avgLatitude, avgLongitude]
+}
 
 function geocodeAddress(geocoder, resultsMap) {
   const address = addressInputTextElement.value;
   geocoder
     .geocode({ address: address })
     .then(({ results }) => {
-      console.log(results)
+      // console.log(results[0])
       geocodedAddressObjectArray.push(results[0]);
-      resultsMap.setCenter(results[0].geometry.location);
+      resultsMap.setCenter({ lat: avgLatLng()[0], lng: avgLatLng()[1] });
       new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location,
+        icon: icons.person
       });
+      avgMarkerUpdate(resultsMap);
     })
     .catch((exception) =>
       alert("Geocode was not successful for the following reason: " + exception)
