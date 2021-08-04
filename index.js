@@ -4,6 +4,7 @@ const addressSubmitButtonElement = document.querySelector('button#submitAddress'
 const addressInputTextElement = document.querySelector('input#addressTextInput');
 const addressDisplayParentElement = document.querySelector('div#addressList');
 let geocodedAddressObjectArray = [];
+let map
 const icons = {
   person: "img/icon_person.png",
   center: "img/icon_center.png"
@@ -20,7 +21,7 @@ function initMap() {
   const originCoord = newYorkCoord;
   // The map, centered at New York
   // const geocoder = new google.maps.Geocoder();
-  const map = new google.maps.Map(document.getElementById("map"), {
+  map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
     center: originCoord,
   });
@@ -165,14 +166,35 @@ function geocodeAddress(geocoder, resultsMap) {
     );
 }
 
-/* search for places using earch term
-use coordinates calculated form center of mass of all addresses as the central search location
-*/
-// function getPlacesNearCenter(position) {
-  
-//     let request = {
-//       location: currentAvgLatLng
-//       rankBy: google.maps.places.RankBy.DISTANCE
-//       keyword: ${searchTerm} // TODO: use correct variable
-//   }
-// }
+
+
+// /* search for places using earch term
+// use coordinates calculated form center of mass of all addresses as the central search location
+// */
+let placeSearchService;
+function getPlacesNearCenter() {
+  let request = {
+      location: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
+      rankBy: google.maps.places.RankBy.DISTANCE,
+      keyword: 'sushi'
+      // keyword: ${searchTerm} // TODO: use correct variable
+  }
+  placeSearchService = new google.maps.places.PlacesService(map);
+  placeSearchService.nearbySearch(request, placeSearchCallback);
+}
+
+function placeSearchCallback(searchResults, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    createMarkers(searchResults);
+  }
+}
+
+function createMarkers(places) {
+  places.forEach(place => {
+    let marker = new google.maps.Marker({
+      position: place.geometry.location,
+      map: map,
+      title: place.name
+    });
+  });
+}
