@@ -8,18 +8,23 @@ const icons = {
   person: "img/icon_person.png",
   center: "img/icon_center.png"
 }
+searchForm = document.getElementById("searchForm");
+searchForm.addEventListener('submit', e => {
+  e.preventDefault();
+  console.log(e.target.searchTerm.value)}
+)
 
 
 function initMap() {
-    const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
-    const originCoord = newYorkCoord;
-    // The map, centered at New York
-    // const geocoder = new google.maps.Geocoder();
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 10,
-      center: originCoord,
-    });
-    handleSubmitButtonEvent(map)
+  const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
+  const originCoord = newYorkCoord;
+  // The map, centered at New York
+  // const geocoder = new google.maps.Geocoder();
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 10,
+    center: originCoord,
+  });
+  handleSubmitButtonEvent(map)
 }
 
 // keep an array that stores the id of the submitted address idArray = [0,1,2,3...]
@@ -44,7 +49,7 @@ function addDeleteButton(newAddress) {
   const newDeleteButton = document.createElement("button");
   newDeleteButton.setAttribute('class', 'delete');
   newDeleteButton.innerText = 'x';
-  newDeleteButton.addEventListener('click', function(event) {
+  newDeleteButton.addEventListener('click', function (event) {
     console.log(event.target.parentNode.id);
     event.target.parentNode.remove();
   })
@@ -59,34 +64,34 @@ function addNewAddress(newAddress) {
 }
 
 function handleSubmitButtonEvent(map) {
-  addressSubmitButtonElement.addEventListener('click', function(event) {
-      event.preventDefault();
-      const newAddress = document.createElement("p");
-      
-      addNewAddress(newAddress);
-      addVoteButton(newAddress);
-      addDeleteButton(newAddress);
+  addressSubmitButtonElement.addEventListener('click', function (event) {
+    event.preventDefault();
+    const newAddress = document.createElement("p");
 
-      const geocoder = new google.maps.Geocoder();
-      geocodeAddress(geocoder, map)
-      
-      //put marker on avgLatLong()
-      // avgMarkerUpdate();
-      // console.log(avgLatLng())
+    addNewAddress(newAddress);
+    addVoteButton(newAddress);
+    addDeleteButton(newAddress);
 
-      // markerAvgLatLng = new google.maps.Marker({
-      //   position: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
-      //   map: map,
-      // });
+    const geocoder = new google.maps.Geocoder();
+    geocodeAddress(geocoder, map)
 
-      // console.log(avgLatLng())
+    //put marker on avgLatLong()
+    // avgMarkerUpdate();
+    // console.log(avgLatLng())
 
+    // markerAvgLatLng = new google.maps.Marker({
+    //   position: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
+    //   map: map,
+    // });
 
-      addressInputForm.reset();
- 
+    // console.log(avgLatLng())
 
 
-  }) 
+    addressInputForm.reset();
+
+
+
+  })
 }
 
 let currentAvgLatLng;
@@ -121,8 +126,8 @@ function avgLatLng() {
     sumLongitude += geocodedAddressObjectArray[i].geometry.location.lng();
   }
   // console.log(geocodedAddressObjectArray.length)
-  avgLatitude = sumLatitude/(geocodedAddressObjectArray.length);
-  avgLongitude = sumLongitude/(geocodedAddressObjectArray.length);
+  avgLatitude = sumLatitude / (geocodedAddressObjectArray.length);
+  avgLongitude = sumLongitude / (geocodedAddressObjectArray.length);
   return [avgLatitude, avgLongitude]
 }
 
@@ -159,3 +164,15 @@ function geocodeAddress(geocoder, resultsMap) {
       alert("Geocode was not successful for the following reason: " + exception)
     );
 }
+
+/* search for places using earch term
+use coordinates calculated form center of mass of all addresses as the central search location
+*/
+// function getPlacesNearCenter(position) {
+  
+//     let request = {
+//       location: currentAvgLatLng
+//       rankBy: google.maps.places.RankBy.DISTANCE
+//       keyword: ${searchTerm} // TODO: use correct variable
+//   }
+// }
