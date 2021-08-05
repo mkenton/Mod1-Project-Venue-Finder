@@ -6,6 +6,9 @@ const addressDisplayParentElement = document.querySelector('div#addressList');
 const searchTermInputTextElement = document.querySelector('input#searchTerm');
 const searchTermSubmitButtonElement = document.querySelector('button#submitSearch')
 const placesContainer = document.querySelector('#placesContainer')
+const refreshButton = document.getElementById("refresh")
+
+
 let geocodedAddressObjectArray = [];
 let map;
 const icons = {
@@ -18,6 +21,11 @@ searchForm.addEventListener('submit', e => {
   //console.log(e.target.searchTerm.value)
 }
 )
+
+refreshButton.addEventListener('click', e=> {
+  location.reload()
+})
+
 
 
 function initMap() {
@@ -277,7 +285,7 @@ function renderPlaceCards(place) {
 
   const newVoteButton = document.createElement("button");
   newVoteButton.setAttribute('class', 'vote');
-  newVoteButton.innerText = "vote";
+  newVoteButton.innerText = "Vote";
   newVoteButton.addEventListener('click', (event) => voteEventHandler(heartContainer))
 
   const heartContainer = document.createElement("p");
@@ -291,3 +299,4 @@ function renderPlaceCards(place) {
 function voteEventHandler(heartContainer) {
   heartContainer.innerText += "♡"
 }
+
