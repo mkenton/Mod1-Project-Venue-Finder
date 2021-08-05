@@ -35,6 +35,8 @@ function initMap() {
 }
 
 // keep an array that stores the id of the submitted address idArray = [0,1,2,3...]
+let addressIdArray = [];
+let addressMarkerArray = [];
 // in an event that an address is removed, the marker should also be removed and the average latitude and longitude should also be recalculated.
 // at a delete event, the id number of the deleted element can be returned, for example, 2
 // then indexToRemove = idArray.indexOf(2) will give the index of the idArray whose element should be deleted
@@ -48,16 +50,27 @@ function addDeleteButton(newAddress) {
   newDeleteButton.setAttribute('class', 'delete');
   newDeleteButton.innerText = 'x';
   newDeleteButton.addEventListener('click', function (event) {
-    console.log(event.target.parentNode.id);
+    let deleteId = event.target.parentNode.id.slice("address".length);
+    let deleteIndex = addressIdArray.indexOf(parseInt(deleteId));
+    geocodedAddressObjectArray.splice(deleteIndex, 1);
+    addressIdArray.splice(deleteIndex, 1);
+    deleteAddressMarker(deleteIndex);
+    avgMarkerUpdate(map, "remove");
     event.target.parentNode.remove();
   })
   newAddress.prepend(newDeleteButton)
 }
 
+function deleteAddressMarker(deleteIndex) {
+  addressMarkerArray[deleteIndex].setMap(null);
+  addressMarkerArray.splice(deleteIndex, 1);
+}
+
 let addressCreateCount = 0;
 function addNewAddress(newAddress) {
   newAddress.innerText = "  " + addressInputTextElement.value + " ";
-  newAddress.id = "address" + addressCreateCount++;
+  newAddress.id = "address" + addressCreateCount;
+  addressIdArray.push(addressCreateCount++);
   addressDisplayParentElement.append(newAddress);
 }
 
@@ -113,16 +126,32 @@ function placeMarkerAvgLatLng(map) {
   });
 }
 
-function avgMarkerUpdate(map) {
-  if (markerAvgLatLng === undefined) {
-    placeMarkerAvgLatLng(map);
-    searchRangeCircle = showSearchRange(map, { lat: avgLatLng()[0], lng: avgLatLng()[1] })
+function avgMarkerUpdate(map, updateType) {
+  if (updateType === "add") {
+    if (markerAvgLatLng === undefined) {
+      placeMarkerAvgLatLng(map);
+      searchRangeCircle = showSearchRange(map, { lat: avgLatLng()[0], lng: avgLatLng()[1] })
+    }
+    else {
+      markerAvgLatLng.setMap(null);
+      placeMarkerAvgLatLng(map);
+      searchRangeCircle.setMap(null);
+      searchRangeCircle = showSearchRange(map, { lat: avgLatLng()[0], lng: avgLatLng()[1] })
+    }
   }
-  else {
-    markerAvgLatLng.setMap(null);
-    placeMarkerAvgLatLng(map);
-    searchRangeCircle.setMap(null);
-    searchRangeCircle = showSearchRange(map, { lat: avgLatLng()[0], lng: avgLatLng()[1] })
+  else if (updateType === "remove") {
+    if (avgLatLng()[0] === NaN) {
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,
+        center: originCoord,
+        mapTypeControl: false
+      });    }
+    else {
+      markerAvgLatLng.setMap(null);
+      placeMarkerAvgLatLng(map);
+      searchRangeCircle.setMap(null);
+      searchRangeCircle = showSearchRange(map, { lat: avgLatLng()[0], lng: avgLatLng()[1] })
+    }
   }
 }
 
@@ -160,12 +189,13 @@ function geocodeAddress(geocoder, resultsMap) {
       geocodedAddressObjectArray.push(results[0]);
       currentAvgLatLng = [avgLatLng()[0], avgLatLng()[1]];
       resultsMap.setCenter({ lat: avgLatLng()[0], lng: avgLatLng()[1] });
-      new google.maps.Marker({
+      newAddressMarker = new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location,
         icon: icons.person
       });
-      avgMarkerUpdate(resultsMap);
+      addressMarkerArray.push(newAddressMarker);
+      avgMarkerUpdate(resultsMap, "add");
     })
     .catch((exception) =>
       alert("Geocode was not successful for the following reason: " + exception)
