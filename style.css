@@ -1,9 +1,11 @@
 body {
-    background-color: rgb(220, 226, 255);
+    background-color: rgb(255, 255, 255);
 }
 
 h1 {
-    padding-left: 40px
+    padding-left: 60px;
+    font-size: 50px;
+    font-weight: bold;
 }
 
 #map {
@@ -26,13 +28,22 @@ h1 {
 }
 
 #searchForm {
-    padding-top: 40px;
+    font-size: large;
+    height:40px;
+    vertical-align: middle;
+}
+
+#placeSearch {
+    height:100px;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 #addressInputForm {
     padding: 10px;
     background-color: rgb(211, 229, 250);
-    border:2px solid black
+    border:2px solid black;
+    font-size: large;
 }
 
 #placesContainer {
