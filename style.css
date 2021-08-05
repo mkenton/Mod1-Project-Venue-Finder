@@ -6,6 +6,7 @@ h1 {
     padding-left: 60px;
     font-size: 50px;
     font-weight: bold;
+    background-color: rgb(245,245,245);
 }
 
 #map {
