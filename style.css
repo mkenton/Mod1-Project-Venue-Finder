@@ -1,0 +1,48 @@
+body {
+    background-color: rgb(220, 226, 255);
+}
+
+h1 {
+    padding-left: 40px
+}
+
+#map {
+      height: 500px;
+      border:2px solid black;
+    
+}
+
+#placesContainer {
+    border: 1px solid black;
+}
+
+.place-card {
+    border: 2px solid green;
+    background-color: rgb(255, 255, 255);
+    width: 250px
+}
+
+.photo {
+    width: auto;
+    height: 150px
+}
+
+#searchForm {
+    padding-top: 40px;
+}
+
+#addressInputForm {
+    padding: 10px;
+    background-color: rgb(211, 229, 250);
+    border:2px solid black
+}
+
+#placesContainer {
+    padding-top: 40px
+}
+
+.addy {
+    padding: 1px;
+    background-color: whitesmoke;
+    border: 2px solid rgb(196, 196, 196)
+}
