@@ -12,14 +12,12 @@ h1 {
     
 }
 
-#placesContainer {
-    border: 1px solid black;
-}
-
 .place-card {
-    border: 2px solid green;
+    /* border: 2px solid green; */
+
+    text-align: center;
+    display: inline-block;
     background-color: rgb(255, 255, 255);
-    width: 250px
 }
 
 .photo {
@@ -38,7 +36,8 @@ h1 {
 }
 
 #placesContainer {
-    padding-top: 40px
+    padding-top: 40px;
+    justify-content: space-around;
 }
 
 .addy {

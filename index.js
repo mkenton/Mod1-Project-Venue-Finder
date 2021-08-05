@@ -218,10 +218,9 @@ function handlePlaces(places) {
   });
 }
 
-
 function renderPlaceCards(place) {
 
-  const placeCard = document.createElement('form');
+  const placeCard = document.createElement('span');
   placeCard.id = place.place_id;
   placeCard.className = "place-card";
 
