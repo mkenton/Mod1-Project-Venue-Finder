@@ -26,6 +26,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
     center: originCoord,
+    mapTypeControl: false
   });
   handleAddressSubmitButtonEvent(map)
   handleSearchSubmitButtonEvent(map)
