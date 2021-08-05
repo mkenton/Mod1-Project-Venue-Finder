@@ -43,15 +43,6 @@ function initMap() {
 // if the markers are stored in an array, markers = [mk0, mk1, mk2, mk3, mk4]
 // we can do markers.splice(indexToRemove, 1)
 
-
-
-// function addVoteButton(newAddress) {
-//   const newVoteButton = document.createElement("button");
-//   newVoteButton.setAttribute('class', 'vote');
-//   newVoteButton.innerText = "vote";
-//   newAddress.append(newVoteButton);
-// }
-
 function addDeleteButton(newAddress) {
   const newDeleteButton = document.createElement("button");
   newDeleteButton.setAttribute('class', 'delete');
@@ -221,16 +212,16 @@ function handlePlaces(places) {
 
 function renderPlaceCards(place) {
 
-  const placeCard = document.createElement('form');
+  const placeCard = document.createElement('span');
   placeCard.id = place.place_id;
   placeCard.className = "place-card";
 
-  const placeName = document.createElement('h4')
-  placeName.textContent = place.name
+  const placeName = document.createElement('h4');
+  placeName.textContent = place.name;
 
-  const placeRating = document.createElement('h4')
-  placeRating.className = "place-rating"
-  let rating = "None"
+  const placeRating = document.createElement('h4');
+  placeRating.className = "place-rating";
+  let rating = "None";
   if (place.rating) rating = place.rating;
   placeRating.textContent = ('Rating: ' + rating + '✮');
   
@@ -239,13 +230,25 @@ function renderPlaceCards(place) {
     let photo = document.createElement('img');
     photo.classList.add('photo');
     photo.src = firstPhoto.getUrl();
-    placeCard.append(photo)}
+    placeCard.append(photo)};
 
-  const cardAddress = document.createElement('h6')
-  cardAddress.className = "cardAddress"
-  cardAddress.textContent = place.vicinity
+  const cardAddress = document.createElement('h6');
+  cardAddress.className = "cardAddress";
+  cardAddress.textContent = place.vicinity;
 
-    
-  placeCard.append(placeName, placeRating, cardAddress)
+  const newVoteButton = document.createElement("button");
+  newVoteButton.setAttribute('class', 'vote');
+  newVoteButton.innerText = "vote";
+  newVoteButton.addEventListener('click', (event) => voteEventHandler(heartContainer))
+  
+  const heartContainer = document.createElement("p");
+  heartContainer.setAttribute('class', 'heart');
+  heartContainer.innerText = "";
+
+  placeCard.append(placeName, placeRating, cardAddress, newVoteButton, heartContainer)
   placesContainer.appendChild(placeCard);
+}
+
+function voteEventHandler(heartContainer) {
+  heartContainer.innerText += "♡"
 }

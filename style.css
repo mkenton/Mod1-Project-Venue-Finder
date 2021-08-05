@@ -1,9 +1,11 @@
 body {
-    background-color: rgb(220, 226, 255);
+    background-color: rgb(255, 255, 255);
 }
 
 h1 {
-    padding-left: 40px
+    padding-left: 60px;
+    font-size: 50px;
+    font-weight: bold;
 }
 
 #map {
@@ -12,14 +14,12 @@ h1 {
     
 }
 
-#placesContainer {
-    border: 1px solid black;
-}
-
 .place-card {
-    border: 2px solid green;
+    /* border: 2px solid green; */
+
+    text-align: center;
+    display: inline-block;
     background-color: rgb(255, 255, 255);
-    width: 250px
 }
 
 .photo {
@@ -28,21 +28,36 @@ h1 {
 }
 
 #searchForm {
-    padding-top: 40px;
+    font-size: large;
+    height:40px;
+    vertical-align: middle;
+}
+
+#placeSearch {
+    height:100px;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 #addressInputForm {
     padding: 10px;
     background-color: rgb(211, 229, 250);
-    border:2px solid black
+    border:2px solid black;
+    font-size: large;
 }
 
 #placesContainer {
-    padding-top: 40px
+    padding-top: 40px;
+    justify-content: space-around;
 }
 
 .addy {
     padding: 1px;
     background-color: whitesmoke;
     border: 2px solid rgb(196, 196, 196)
+}
+
+.heart {
+    font-size: larger;
+    color: red;
 }
