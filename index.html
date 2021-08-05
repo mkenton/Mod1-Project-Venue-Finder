@@ -13,38 +13,38 @@
 </head>
 
 <body>
-  <h1>Central Venue Locator</h1>
-  
   <div class="container">
+    <div class="row">
+      <div class="col-8" id="title">
+        <h1>Central Venue Locator</h1>
+      </div>
+    </div>
     <div class="row">
       <div class="col-8" id="map"></div>
       <div class="col" id="input">
-        <h2>
-          Input Addresses
-        </h2>
         <form id="addressInputForm">
-          <label for="searchTerm">  Starting Locations:</label>
+          <label for="searchTerm"> Enter Starting Locations:</label>
           <input id='addressTextInput' type='text' placeholder="123 N Main St">
-          <button id='submitAddress'>  Add Address</button>
+          <button id='submitAddress' class='submitButton'> Add Address</button>
         </form>
         <div id='addressList'></div>
       </div>
     </div>
     <div class="row" id="placeSearch">
       <form id="searchForm" action="" method="POST">
-        <label for="searchTerm">Search for:</label>
-        <input id="searchTerm" type="text" name="searchTerm" placeholder="Enter food or activity!">
-        <button id='submitSearch'>Search for Central Venue</button>
+        <label for="searchTerm">Search for a central venue:</label>
+        <input id="searchTerm" type="text" name="searchTerm" placeholder="Pizza, Bowling, Thai...">
+        <button id='submitSearch' class='submitButton'>Search</button>
       </form>
     </div>
     <div class="row" id='placesContainer'>
       <!-- append cards for top 5 results here -->
-  
-  
+
+
       <!-- <script src="js/index.min.js"></script> -->
-  
+
     </div>
-    
+
   </div>
 
 </body>
