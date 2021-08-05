@@ -5,6 +5,7 @@ const addressInputTextElement = document.querySelector('input#addressTextInput')
 const addressDisplayParentElement = document.querySelector('div#addressList');
 const searchTermInputTextElement = document.querySelector('input#searchTerm');
 const searchTermSubmitButtonElement = document.querySelector('button#submitSearch')
+const placesContainer = document.querySelector('#placesContainer')
 let geocodedAddressObjectArray = [];
 let map;
 const icons = {
@@ -14,7 +15,8 @@ const icons = {
 searchForm = document.getElementById("searchForm");
 searchForm.addEventListener('submit', e => {
   e.preventDefault();
-  console.log(e.target.searchTerm.value)}
+  //console.log(e.target.searchTerm.value)
+}
 )
 
 
@@ -26,6 +28,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
     center: originCoord,
+    mapTypeControl: false
   });
   handleAddressSubmitButtonEvent(map)
   handleSearchSubmitButtonEvent(map)
@@ -42,12 +45,12 @@ function initMap() {
 
 
 
-function addVoteButton(newAddress) {
-  const newVoteButton = document.createElement("button");
-  newVoteButton.setAttribute('class', 'vote');
-  newVoteButton.innerText = "vote";
-  newAddress.append(newVoteButton);
-}
+// function addVoteButton(newAddress) {
+//   const newVoteButton = document.createElement("button");
+//   newVoteButton.setAttribute('class', 'vote');
+//   newVoteButton.innerText = "vote";
+//   newAddress.append(newVoteButton);
+// }
 
 function addDeleteButton(newAddress) {
   const newDeleteButton = document.createElement("button");
@@ -57,12 +60,12 @@ function addDeleteButton(newAddress) {
     console.log(event.target.parentNode.id);
     event.target.parentNode.remove();
   })
-  newAddress.append(newDeleteButton)
+  newAddress.prepend(newDeleteButton)
 }
 
 let addressCreateCount = 0;
 function addNewAddress(newAddress) {
-  newAddress.innerText = addressInputTextElement.value + " ";
+  newAddress.innerText = "  " + addressInputTextElement.value + " ";
   newAddress.id = "address" + addressCreateCount++;
   addressDisplayParentElement.append(newAddress);
 }
@@ -71,9 +74,10 @@ function handleAddressSubmitButtonEvent(map) {
   addressSubmitButtonElement.addEventListener('click', function (event) {
     event.preventDefault();
     const newAddress = document.createElement("p");
+    newAddress.classList.add('addy')
 
     addNewAddress(newAddress);
-    addVoteButton(newAddress);
+    //addVoteButton(newAddress);
     addDeleteButton(newAddress);
 
     const geocoder = new google.maps.Geocoder();
@@ -185,10 +189,10 @@ function geocodeAddress(geocoder, resultsMap) {
 let placeSearchService;
 function getPlacesNearCenter() {
   let request = {
-      location: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
-      rankBy: google.maps.places.RankBy.DISTANCE,
-      keyword: searchTermInputTextElement.value
-      // keyword: ${searchTerm} // TODO: use correct variable
+    location: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
+    rankBy: google.maps.places.RankBy.DISTANCE,
+    keyword: searchTermInputTextElement.value
+    // keyword: ${searchTerm} // TODO: use correct variable
   }
   placeSearchService = new google.maps.places.PlacesService(map);
   placeSearchService.nearbySearch(request, placeSearchCallback);
@@ -196,16 +200,52 @@ function getPlacesNearCenter() {
 
 function placeSearchCallback(searchResults, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    createMarkers(searchResults.slice(0,5));
-  }
+    closestPlaces = searchResults.slice(0, 4)
+    handlePlaces(closestPlaces);
+    //console.log(closestPlaces) //see top 4 results
+  } else {alert ("Enter starting locations first!")}
 }
 
-function createMarkers(places) {
+function handlePlaces(places) {
   places.forEach(place => {
+    renderPlaceCards(place)
     let marker = new google.maps.Marker({
       position: place.geometry.location,
       map: map,
       title: place.name
     });
+    
   });
+}
+
+
+function renderPlaceCards(place) {
+
+  const placeCard = document.createElement('form');
+  placeCard.id = place.place_id;
+  placeCard.className = "place-card";
+
+  const placeName = document.createElement('h4')
+  placeName.textContent = place.name
+
+  const placeRating = document.createElement('h4')
+  placeRating.className = "place-rating"
+  let rating = "None"
+  if (place.rating) rating = place.rating;
+  placeRating.textContent = ('Rating: ' + rating + '✮');
+  
+  if (place.photos) {
+    let firstPhoto = place.photos[0];
+    let photo = document.createElement('img');
+    photo.classList.add('photo');
+    photo.src = firstPhoto.getUrl();
+    placeCard.append(photo)}
+
+  const cardAddress = document.createElement('h6')
+  cardAddress.className = "cardAddress"
+  cardAddress.textContent = place.vicinity
+
+    
+  placeCard.append(placeName, placeRating, cardAddress)
+  placesContainer.appendChild(placeCard);
 }
