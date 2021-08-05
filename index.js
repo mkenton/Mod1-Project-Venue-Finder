@@ -224,7 +224,7 @@ function placeSearchCallback(searchResults, status) {
     closestPlaces = searchResults.slice(0, 4)
     handlePlaces(closestPlaces);
     //console.log(closestPlaces) //see top 4 results
-  } else {alert ("Enter starting locations first!")}
+  } else { alert("No results found. Make sure to enter starting locations first!") }
 }
 
 function handlePlaces(places) {
@@ -235,32 +235,41 @@ function handlePlaces(places) {
       map: map,
       title: place.name
     });
-    
+
   });
 }
 
 
 function renderPlaceCards(place) {
 
+  console.log(place.website)
+
   const placeCard = document.createElement('span');
   placeCard.id = place.place_id;
   placeCard.className = "place-card";
 
-  const placeName = document.createElement('h4');
+  const placeName = document.createElement('h5');
   placeName.textContent = place.name;
 
-  const placeRating = document.createElement('h4');
+  // add website link to place name
+
+  const placeRating = document.createElement('h6');
   placeRating.className = "place-rating";
   let rating = "None";
   if (place.rating) rating = place.rating;
   placeRating.textContent = ('Rating: ' + rating + '✮');
-  
+  placeRating.style.color = "#af8d1d"
+
+  let photo = document.createElement('img');
+  photo.classList.add('photo');
   if (place.photos) {
     let firstPhoto = place.photos[0];
-    let photo = document.createElement('img');
-    photo.classList.add('photo');
     photo.src = firstPhoto.getUrl();
-    placeCard.append(photo)};
+  }
+  else {
+    photo.src = "img/no-img-found.png"
+  }
+  placeCard.append(photo)
 
   const cardAddress = document.createElement('h6');
   cardAddress.className = "cardAddress";
@@ -270,7 +279,7 @@ function renderPlaceCards(place) {
   newVoteButton.setAttribute('class', 'vote');
   newVoteButton.innerText = "vote";
   newVoteButton.addEventListener('click', (event) => voteEventHandler(heartContainer))
-  
+
   const heartContainer = document.createElement("p");
   heartContainer.setAttribute('class', 'heart');
   heartContainer.innerText = "";
