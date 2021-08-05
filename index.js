@@ -6,7 +6,7 @@ const addressDisplayParentElement = document.querySelector('div#addressList');
 const searchTermInputTextElement = document.querySelector('input#searchTerm');
 const searchTermSubmitButtonElement = document.querySelector('button#submitSearch')
 let geocodedAddressObjectArray = [];
-let map
+let map;
 const icons = {
   person: "img/icon_person.png",
   center: "img/icon_center.png"
@@ -102,6 +102,7 @@ function handleSearchSubmitButtonEvent(map) {
   searchTermSubmitButtonElement.addEventListener('click', function (event) {
     event.preventDefault();
     getPlacesNearCenter();
+    // addressInputForm.reset();
   })
 }
 
@@ -195,7 +196,7 @@ function getPlacesNearCenter() {
 
 function placeSearchCallback(searchResults, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    createMarkers(searchResults);
+    createMarkers(searchResults.slice(0,5));
   }
 }
 
