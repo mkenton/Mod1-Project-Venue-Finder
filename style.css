@@ -1,15 +1,17 @@
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: #F9F9F9;
 }
 
 h1 {
+    color: #424242;
+    text-align: center; 
     padding-left: 60px;
     font-size: 50px;
     font-weight: bold;
 }
 
 #map {
-      height: 500px;
+      height: 450px;
       border:2px solid black;
     
 }
@@ -18,8 +20,9 @@ h1 {
     /* border: 2px solid green; */
 
     text-align: center;
+    word-wrap: break-word;
     display: inline-block;
-    background-color: rgb(255, 255, 255);
+    max-width: 300px;
 }
 
 .photo {
@@ -29,21 +32,29 @@ h1 {
 
 #searchForm {
     font-size: large;
-    height:40px;
+    border:2px solid black;
+    padding: 10px;
     vertical-align: middle;
+    background-color: #AAD9FF;
 }
 
 #placeSearch {
     height:100px;
     display: table-cell;
     vertical-align: middle;
+    /* margin-left: 0px; */
 }
 
 #addressInputForm {
     padding: 10px;
-    background-color: rgb(211, 229, 250);
+    background-color: #AAD9FF;
     border:2px solid black;
     font-size: large;
+    margin-bottom: 10px
+}
+
+.submitButton {
+    background-color:#E8E8E8;
 }
 
 #placesContainer {
@@ -53,11 +64,16 @@ h1 {
 
 .addy {
     padding: 1px;
-    background-color: whitesmoke;
-    border: 2px solid rgb(196, 196, 196)
+    background-color: #F8E09D;
+    border: 2px solid #F5CE65;
+    margin: 0px 0px 8px
 }
 
 .heart {
     font-size: larger;
     color: red;
+}
+
+.row {
+    margin-left: 0px
 }
