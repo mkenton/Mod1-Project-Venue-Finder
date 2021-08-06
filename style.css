@@ -82,11 +82,24 @@ h1 {
     margin-top: 2%;
 }
 
+.restart {
+    justify-content: space-around;
+}
+
 #refresh {
     background-color: #F8E09D;
     border: 2px solid #cea637;
     padding: 17px;
-    position: absolute;
+    /* position: absolute; */
+    /* margin: -2px; */
+
+}
+
+#startOver {
+    background-color: #F8E09D;
+    border: 2px solid #cea637;
+    padding: 17px;
+    /* position: absolute; */
     /* margin: -2px; */
 
 }
