@@ -86,6 +86,7 @@ function handleSearchSubmitButtonEvent(map) {
   searchTermSubmitButtonElement.addEventListener('click', function (event) {
     event.preventDefault();
     getPlacesNearCenter();
+    map.setZoom(13);
     searchFormElement.reset();
   })
 }
