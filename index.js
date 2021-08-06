@@ -23,8 +23,7 @@ searchForm.addEventListener('submit', e => {
 function initMap() {
   const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
   const originCoord = newYorkCoord;
-  // The map, centered at New York
-  // const geocoder = new google.maps.Geocoder();
+
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
     center: originCoord,
@@ -34,16 +33,8 @@ function initMap() {
   handleSearchSubmitButtonEvent(map)
 }
 
-// keep an array that stores the id of the submitted address idArray = [0,1,2,3...]
 let addressIdArray = [];
 let addressMarkerArray = [];
-// in an event that an address is removed, the marker should also be removed and the average latitude and longitude should also be recalculated.
-// at a delete event, the id number of the deleted element can be returned, for example, 2
-// then indexToRemove = idArray.indexOf(2) will give the index of the idArray whose element should be deleted
-// then we can do idArray.splice(indexToRemove, 1)
-// for example, idArray = [0,1,2,3,4] -> [0,1,3,4] (2 is removed)
-// if the markers are stored in an array, markers = [mk0, mk1, mk2, mk3, mk4]
-// we can do markers.splice(indexToRemove, 1)
 
 function addDeleteButton(newAddress) {
   const newDeleteButton = document.createElement("button");
@@ -81,23 +72,10 @@ function handleAddressSubmitButtonEvent(map) {
     newAddress.classList.add('addy')
 
     addNewAddress(newAddress);
-    //addVoteButton(newAddress);
     addDeleteButton(newAddress);
 
     const geocoder = new google.maps.Geocoder();
     geocodeAddress(geocoder, map)
-
-    //put marker on avgLatLong()
-    // avgMarkerUpdate();
-    // console.log(avgLatLng())
-
-    // markerAvgLatLng = new google.maps.Marker({
-    //   position: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
-    //   map: map,
-    // });
-
-    // console.log(avgLatLng())
-
 
     addressInputForm.reset();
 

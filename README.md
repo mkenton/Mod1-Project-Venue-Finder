@@ -3,41 +3,29 @@
 ### Author: Sungoh Park*, Michael Kenton*
 *Authors contributed equally to this project.
 
-### Features ###
-Given a list of departure points (physical addresses), the app will deliver the highly rated restaurants using google map API within reasonable distance from the addresses provided.
+### Features / User Story ###
+Given a list of departure points (physical addresses), the app will deliver the available venues using google map API within reasonable distance from the addresses provided.
 
 ![Example](https://github.com/mkenton/Mod1-Project-Venue-Finder/blob/main/example.PNG)
-  
-### User Story ###
-* as a user, you should be able to input a list of addresses representing locations of departure of everyone
-* as a user, you should be able to input a type of restaurant (Indian, American, Chinese, etc.)
-* as a user, you receive a result in a form of top 5 (at most) highest rated restaurants in a geometrical region defined by center of gravity, sorted in the order of metric determined by the time it takes for everyone to arrive at the restaurant.
 
-### The basic story of your application ###
-* See the user story
-
-### The core features of your MVP ###
-#### MVP will show the following functionalities: ####
-#### Address inputs ####
-* Location visualization based on google map
-    * Restaurant locations within the search area
-    * Search area updates based on radius
-
-#### Possible challenges
-* The metric to determine the restaurants
-* Showing the result visually and interactively 
-
-#### Meeting the requirements
-* We will implement HTML/CSS/JS frontend structure to interact with the google map API.
-* All functionalities of this web application can be achieved within single page.
-* It is expected that the user input is provided by submit, which will naturally involve clicking on submit button.
-* Google map interaction means the content will have to change and update to show the user about the restaurant search result.
-* User input addresses will be duplicated onto the webpage after input, eventually to be voted for.
+* As a user, I want to find the convenient location for everyone in the group to eat together or hang out. 
+* I want to be able to search for the food or activity, and see the information of some closest venues from the center of everyone's location
+* I would like to choose among the search result based on the information (restaurant name, google rating, and image).
+* Finally, I would like to vote on the venues of my approval with vote (can choose multiple).
 
 
-#### implementation detail
-* calculate center of gravity for (x,y) coordinate for everyone
-* search within some radius (e.g. 10 miles) from (x_COM, y_COM)
-* ![equation](https://latex.codecogs.com/gif.latex?%28x_%7B%5Cmathrm%7BCOM%7D%7D%2C%20y_%7B%5Cmathrm%7BCOM%7D%7D%29%20%3D%20%28%5Cfrac%7B%5Csum_n%20w_n%20x_n%7D%7B%5Csum_n%20w_n%7D%2C%20%5Cfrac%7B%5Csum_n%20w_n%20y_n%7D%7B%5Csum_n%20w_n%7D%29)
-* sort by total time spent for everyone to travel to the location.
-* may need some assumptions on travel time (time/block etc.)
+#### Feature Details ####
+* This app takes two types of input. (1) Addresses representing locations of departure of everyone of the group. (2) Food or activity (pizza, bowling, Thai, etc.) to search venues for.
+* Address is provided one by one. This can be as abstract as a city name such as "New York" or as specific as "123 N Main st. ...", but we recommend providing specific input addresses. Each time you input an address, there will be a marker on the map corresponding to the address provided. 
+* Additionally, there will be a marker representing the center point of all the addresses provided, with a circle highlighting the nearby area. This center point is defined as a point with the average latitude and longitude of all addresses provided so far, and is dynamically updated upon addition or removal of an address. 
+* When the address input is finished, we can search for the venue of interest. The search word can be any activity or food (pizza, bowling, Thai, etc.).
+* The search result will be returned in a form of information of 4 closest restaurants (limited to 4 for the ease of display and help decision-making) by distance from the center point defined above.
+* The search result information has (1) name, (2) image, (3) rating, and (4) address of the places. 
+* Based on how attrative they are, the user can click the "vote" button to display a heart of approval. The user can select multiple venues. Eventually, the number of vote count will be represented by the number of hearts displayed, and there goes the final decision for the group.
+
+
+### Potential Improvements in the Future ###
+* More interactivity with the map and the search result such as hovering mouse cursor on search result makes the corresponding marker on the map change color, etc.
+* More advanced metric for selection, such as complexity of route, how similar estimated times of arrivals are for everyone (considering they may use different transportation), and automatic suggestion if the direct search result limited to 4 can be improved significantly. 
+* Improved functionalities for more advanced search scenario such as watching movie after dinner.
+* More Styling for better look!
