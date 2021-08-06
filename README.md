@@ -6,7 +6,7 @@
 ### Features / User Story ###
 Given a list of departure points (physical addresses), the app will deliver the available venues using google map API within reasonable distance from the addresses provided.
 
-![Example](https://github.com/mkenton/Mod1-Project-Venue-Finder/blob/main/example.PNG)
+![Example](https://github.com/mkenton/Mod1-Project-Venue-Finder/blob/main/CentroVenue-Screenshot.png)
 
 * As a user, I want to find the convenient location for everyone in the group to eat together or hang out. 
 * I want to be able to search for the food or activity, and see the information of some closest venues from the center of everyone's location
@@ -21,7 +21,7 @@ Given a list of departure points (physical addresses), the app will deliver the 
 * When the address input is finished, we can search for the venue of interest. The search word can be any activity or food (pizza, bowling, Thai, etc.).
 * The search result will be returned in a form of information of 4 closest restaurants (limited to 4 for the ease of display and help decision-making) by distance from the center point defined above.
 * The search result information has (1) name, (2) image, (3) rating, and (4) address of the places. 
-* Based on how attrative they are, the user can click the "vote" button to display a heart of approval. The user can select multiple venues. Eventually, the number of vote count will be represented by the number of hearts displayed, and there goes the final decision for the group.
+* Based on how attractive they are, the user can click the "vote" button to display a heart of approval. The user can select multiple venues. Eventually, the number of vote count will be represented by the number of hearts displayed, and there goes the final decision for the group.
 
 
 ### Potential Improvements in the Future ###
