@@ -223,7 +223,7 @@ startOverButton.addEventListener('click', event => {
     marker.setMap(null)
   })
   removeAllChilds(placesContainer);
-  placesOnDisplay = [];
+  placesOnDisplay = [];fghm
   // location.reload()
 })
 
@@ -237,6 +237,7 @@ function removeAllChilds(parentNode) {
   }
 }
 
+let mouseOverMarker;
 function renderPlaceCards(place) {
 
   console.log(place.website)
@@ -244,6 +245,18 @@ function renderPlaceCards(place) {
   const placeCard = document.createElement('span');
   placeCard.id = place.place_id;
   placeCard.className = "place-card";
+  placeCard.addEventListener('mouseenter', function(event) {
+    mouseOverMarker = new google.maps.Marker({
+      position: place.geometry.location,
+      map: map,
+      icon: "img/icon_mouseover.png"
+    });
+    placeCard.style.border = '3px solid rgb(10, 200, 10)';
+  });
+  placeCard.addEventListener('mouseleave', function(event) {
+    placeCard.style.border = '3px solid #F9F9F9';
+    mouseOverMarker.setMap(null);
+  });
 
   const placeName = document.createElement('h5');
   placeName.textContent = place.name;
