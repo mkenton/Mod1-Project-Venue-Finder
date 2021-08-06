@@ -15,7 +15,7 @@ Given a list of departure points (physical addresses), the app will deliver the 
 
 
 #### Feature Details ####
-* This app takes two types of input. (1) a list (not a data type) of addresses representing locations of departure of everyone of the group. (2) food or activity (pizza, bowling, Thai, etc.) to search venues for.
+* This app takes two types of input. (1) Addresses representing locations of departure of everyone of the group. (2) food or activity (pizza, bowling, Thai, etc.) to search venues for.
 * Address is provided one by one. This can be as abstract as a city name such as "New York" or as specific as "123 N Main st. ...", but we recommend providing specific input addresses. Each time you input an address, there will be a marker on the map corresponding to the address provided. 
 * Additionally, there will be a marker representing the center point of all the addresses provided, with a circle highlighting the nearby area. This center point has the average latitude and longitude of all addresses provided so far, and is dynamically updated upon addition or removal of an address.
 * When the address input is finished, we can search for the venue of interest. The search word can be any activity or food (pizza, bowling, Thai, etc.).
