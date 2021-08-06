@@ -227,9 +227,9 @@ startOverButton.addEventListener('click', event => {
   // location.reload()
 })
 
-refreshButton.addEventListener('click', event => {
-  location.reload()
-})
+// refreshButton.addEventListener('click', event => {
+//   location.reload()
+// })
 
 function removeAllChilds(parentNode) {
   while(parentNode.firstChild) {
@@ -251,7 +251,7 @@ function renderPlaceCards(place) {
       map: map,
       icon: "img/icon_mouseover.png"
     });
-    placeCard.style.border = '3px solid rgb(10, 200, 10)';
+    placeCard.style.border = '3px solid rgb(7, 7, 7)';
   });
   placeCard.addEventListener('mouseleave', function(event) {
     placeCard.style.border = '3px solid #F9F9F9';
