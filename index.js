@@ -27,11 +27,9 @@ refreshButton.addEventListener('click', e=> {
 })
 
 
-
+const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
+const originCoord = newYorkCoord;
 function initMap() {
-  const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
-  const originCoord = newYorkCoord;
-
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
     center: originCoord,
@@ -126,13 +124,13 @@ function avgMarkerUpdate(map, updateType) {
     }
   }
   else if (updateType === "remove") {
-    if (avgLatLng()[0] === NaN) {
-      map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 10,
-        center: originCoord,
-        mapTypeControl: false
-      });    }
+    if (Number.isNaN(avgLatLng()[0])) {
+      map.setCenter(originCoord);
+      markerAvgLatLng.setMap(null);
+      searchRangeCircle.setMap(null);
+    }
     else {
+      map.setCenter({ lat: avgLatLng()[0], lng: avgLatLng()[1] }); 
       markerAvgLatLng.setMap(null);
       placeMarkerAvgLatLng(map);
       searchRangeCircle.setMap(null);
