@@ -21,12 +21,17 @@ h1 {
     text-align: center;
     word-wrap: break-word;
     display: inline-block;
-    max-width: 300px;
+    max-width: 280px;
+}
+
+.h5, h5 {
+    font-size: 1.2rem;
 }
 
 .photo {
-    width: auto;
-    height: 150px
+    width: 274px;
+    height: auto;
+    max-height: 200px;
 }
 
 #searchForm {
@@ -71,10 +76,6 @@ h1 {
 .heart {
     font-size: larger;
     color: red;
-}
-
-.row {
-    /* margin-left: 0px; */
 }
 
 .search-row {
