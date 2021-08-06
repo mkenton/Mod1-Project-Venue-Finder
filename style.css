@@ -54,7 +54,6 @@ h1 {
     background-color: #AAD9FF;
     border:2px solid black;
     font-size: large;
-    margin-bottom: 10px
 }
 
 .submitButton {
@@ -62,8 +61,8 @@ h1 {
 }
 
 #placesContainer {
-    padding-top: 40px;
     justify-content: space-around;
+    padding-bottom: 25px;
 }
 
 .addy {
