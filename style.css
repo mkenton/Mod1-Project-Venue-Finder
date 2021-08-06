@@ -85,14 +85,13 @@ h1 {
     justify-content: space-around;
 }
 
-#refresh {
+/* #refresh {
     background-color: #F8E09D;
     border: 2px solid #cea637;
     padding: 17px;
     /* position: absolute; */
-    /* margin: -2px; */
-
-}
+    /* margin: -2px; 
+}*/
 
 #startOver {
     background-color: #F8E09D;
