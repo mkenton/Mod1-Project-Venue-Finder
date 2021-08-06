@@ -3,12 +3,11 @@ body {
 }
 
 h1 {
+    margin-left: 60px;
     color: #424242;
-    text-align: center; 
-    padding-left: 60px;
     font-size: 50px;
     font-weight: bold;
-    background-color: rgb(245,245,245);
+    font-family: "Copperplate"
 }
 
 #map {
@@ -35,7 +34,6 @@ h1 {
     font-size: large;
     border:2px solid black;
     padding: 10px;
-    vertical-align: middle;
     background-color: #AAD9FF;
 }
 
@@ -44,10 +42,11 @@ h1 {
     display: table-cell;
     vertical-align: middle;
     /* margin-left: 0px; */
+    padding-left: 0px;
 }
 
 #addressInputForm {
-    padding: 10px;
+    padding: 10px 0px 10px 10px;
     background-color: #AAD9FF;
     border:2px solid black;
     font-size: large;
@@ -76,5 +75,33 @@ h1 {
 }
 
 .row {
-    margin-left: 0px
+    /* margin-left: 0px; */
+}
+
+.search-row {
+    margin-top: 2%;
+}
+
+#refresh {
+    background-color: #F8E09D;
+    border: 2px solid #cea637;
+    padding: 17px;
+    position: absolute;
+    /* margin: -2px; */
+
+}
+
+footer {
+    background-color: rgba(56, 56, 56, 0.8);
+    color:#b1b1b1;
+    padding: 30px;
+    height: 90px;
+}
+
+#tagline {
+    margin-top: -10px;
+    margin-left: 60px;
+    color: #818181;
+    font-style: italic;
+    font-family: "garamond";
 }
