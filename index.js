@@ -220,7 +220,7 @@ startOverButton.addEventListener('click', event => {
     marker.setMap(null)
   })
   removeAllChilds(placesContainer);
-  placesOnDisplay = [];
+  placeMarkersOnDisplay = [];
   // location.reload()
 })
 
