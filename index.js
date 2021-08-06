@@ -10,7 +10,6 @@ const placesContainer = document.querySelector('#placesContainer')
 const refreshButton = document.getElementById("refresh")
 const startOverButton = document.getElementById("startOver")
 
-
 let geocodedAddressObjectArray = [];
 let map;
 const icons = {
@@ -27,7 +26,7 @@ const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
 const originCoord = newYorkCoord;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 10,
+    zoom: 11,
     center: originCoord,
     mapTypeControl: false
   });
@@ -179,8 +178,6 @@ function geocodeAddress(geocoder, resultsMap) {
     );
 }
 
-
-
 // /* search for places using earch term
 // use coordinates calculated form center of mass of all addresses as the central search location
 // */
@@ -190,7 +187,6 @@ function getPlacesNearCenter() {
     location: { lat: avgLatLng()[0], lng: avgLatLng()[1] },
     rankBy: google.maps.places.RankBy.DISTANCE,
     keyword: searchTermInputTextElement.value
-    // keyword: ${searchTerm} // TODO: use correct variable
   }
   placeSearchService = new google.maps.places.PlacesService(map);
   placeSearchService.nearbySearch(request, placeSearchCallback);
@@ -200,7 +196,7 @@ function placeSearchCallback(searchResults, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     closestPlaces = searchResults.slice(0, 4)
     handlePlaces(closestPlaces);
-    //console.log(closestPlaces) //see top 4 results
+    //console.log(closestPlaces) //see top results
   } else { alert("No results found. Make sure to enter starting locations first!") }
 }
 
@@ -223,7 +219,7 @@ startOverButton.addEventListener('click', event => {
     marker.setMap(null)
   })
   removeAllChilds(placesContainer);
-  placesOnDisplay = [];fghm
+  placesOnDisplay = [];
   // location.reload()
 })
 
@@ -239,9 +235,6 @@ function removeAllChilds(parentNode) {
 
 let mouseOverMarker;
 function renderPlaceCards(place) {
-
-  console.log(place.website)
-
   const placeCard = document.createElement('span');
   placeCard.id = place.place_id;
   placeCard.className = "place-card";
@@ -261,7 +254,7 @@ function renderPlaceCards(place) {
   const placeName = document.createElement('h5');
   placeName.textContent = place.name;
 
-  // add website link to place name
+  //TODO: add website link to place card (website currently not accessible in Places API request)
 
   const placeRating = document.createElement('h6');
   placeRating.className = "place-rating";
@@ -301,4 +294,3 @@ function renderPlaceCards(place) {
 function voteEventHandler(heartContainer) {
   heartContainer.innerText += "♡"
 }
-
