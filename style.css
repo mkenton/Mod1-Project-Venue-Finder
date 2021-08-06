@@ -17,8 +17,7 @@ h1 {
 }
 
 .place-card {
-    /* border: 2px solid green; */
-
+    border: 3px solid #F9F9F9;
     text-align: center;
     word-wrap: break-word;
     display: inline-block;
