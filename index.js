@@ -3,10 +3,12 @@ const addressInputForm = document.querySelector('form#addressInputForm')
 const addressSubmitButtonElement = document.querySelector('button#submitAddress');
 const addressInputTextElement = document.querySelector('input#addressTextInput');
 const addressDisplayParentElement = document.querySelector('div#addressList');
+const searchFormElement = document.querySelector('form#searchForm');
 const searchTermInputTextElement = document.querySelector('input#searchTerm');
 const searchTermSubmitButtonElement = document.querySelector('button#submitSearch')
 const placesContainer = document.querySelector('#placesContainer')
 const refreshButton = document.getElementById("refresh")
+const startOverButton = document.getElementById("startOver")
 
 
 let geocodedAddressObjectArray = [];
@@ -19,13 +21,7 @@ searchForm = document.getElementById("searchForm");
 searchForm.addEventListener('submit', e => {
   e.preventDefault();
   //console.log(e.target.searchTerm.value)
-}
-)
-
-refreshButton.addEventListener('click', e=> {
-  location.reload()
 })
-
 
 const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
 const originCoord = newYorkCoord;
@@ -84,9 +80,6 @@ function handleAddressSubmitButtonEvent(map) {
     geocodeAddress(geocoder, map)
 
     addressInputForm.reset();
-
-
-
   })
 }
 
@@ -94,7 +87,7 @@ function handleSearchSubmitButtonEvent(map) {
   searchTermSubmitButtonElement.addEventListener('click', function (event) {
     event.preventDefault();
     getPlacesNearCenter();
-    // addressInputForm.reset();
+    searchFormElement.reset();
   })
 }
 
@@ -211,6 +204,8 @@ function placeSearchCallback(searchResults, status) {
   } else { alert("No results found. Make sure to enter starting locations first!") }
 }
 
+
+let placeMarkersOnDisplay = [];
 function handlePlaces(places) {
   places.forEach(place => {
     renderPlaceCards(place)
@@ -219,11 +214,30 @@ function handlePlaces(places) {
       map: map,
       title: place.name
     });
-
+    placeMarkersOnDisplay.push(marker);
   });
 }
 
+startOverButton.addEventListener('click', event => {
+  placeMarkersOnDisplay.forEach(marker => {
+    marker.setMap(null)
+  })
+  removeAllChilds(placesContainer);
+  placesOnDisplay = [];fghm
+  // location.reload()
+})
 
+// refreshButton.addEventListener('click', event => {
+//   location.reload()
+// })
+
+function removeAllChilds(parentNode) {
+  while(parentNode.firstChild) {
+    parentNode.removeChild(parentNode.lastChild);
+  }
+}
+
+let mouseOverMarker;
 function renderPlaceCards(place) {
 
   console.log(place.website)
@@ -231,6 +245,18 @@ function renderPlaceCards(place) {
   const placeCard = document.createElement('span');
   placeCard.id = place.place_id;
   placeCard.className = "place-card";
+  placeCard.addEventListener('mouseenter', function(event) {
+    mouseOverMarker = new google.maps.Marker({
+      position: place.geometry.location,
+      map: map,
+      icon: "img/icon_mouseover.png"
+    });
+    placeCard.style.border = '3px solid rgb(7, 7, 7)';
+  });
+  placeCard.addEventListener('mouseleave', function(event) {
+    placeCard.style.border = '3px solid #F9F9F9';
+    mouseOverMarker.setMap(null);
+  });
 
   const placeName = document.createElement('h5');
   placeName.textContent = place.name;
