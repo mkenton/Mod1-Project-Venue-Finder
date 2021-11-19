@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mkenton/Mod1-Project-Venue-Finder/issues"
   },
-  "homepage": "https://github.com/mkenton/Mod1-Project-Venue-Finder#readme"
+  "homepage": "https://github.com/mkenton/Mod1-Project-Venue-Finder#readme",
+  "engines": {
+    "node": "10.15.0"
+  }
 }
