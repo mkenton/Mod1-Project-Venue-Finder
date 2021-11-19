@@ -1,4 +1,10 @@
 // Initialize and add the map
+
+script = document.createElement('script');
+script.src = process.env.MAPS_CALL
+script.async;
+document.querySelector('head').append(script);
+
 const addressInputForm = document.querySelector('form#addressInputForm')
 const addressSubmitButtonElement = document.querySelector('button#submitAddress');
 const addressInputTextElement = document.querySelector('input#addressTextInput');
