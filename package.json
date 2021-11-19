@@ -1,0 +1,19 @@
+{
+  "name": "mod1-project-venue-finder",
+  "version": "1.0.0",
+  "description": "centro-venue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkenton/Mod1-Project-Venue-Finder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkenton/Mod1-Project-Venue-Finder/issues"
+  },
+  "homepage": "https://github.com/mkenton/Mod1-Project-Venue-Finder#readme"
+}
