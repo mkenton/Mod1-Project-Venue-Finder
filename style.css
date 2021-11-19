@@ -11,9 +11,9 @@ h1 {
 }
 
 #map {
-      height: 450px;
-      border:2px solid black;
-    
+    height: 450px;
+    border: 2px solid black;
+
 }
 
 .place-card {
@@ -36,13 +36,13 @@ h1 {
 
 #searchForm {
     font-size: large;
-    border:2px solid black;
+    border: 2px solid black;
     padding: 10px;
     background-color: #AAD9FF;
 }
 
 #placeSearch {
-    height:100px;
+    height: 100px;
     display: table-cell;
     vertical-align: middle;
     /* margin-left: 0px; */
@@ -52,12 +52,12 @@ h1 {
 #addressInputForm {
     padding: 10px 0px 10px 10px;
     background-color: #AAD9FF;
-    border:2px solid black;
+    border: 2px solid black;
     font-size: large;
 }
 
 .submitButton {
-    background-color:#E8E8E8;
+    background-color: #E8E8E8;
 }
 
 #placesContainer {
@@ -90,7 +90,7 @@ h1 {
     border: 2px solid #cea637;
     padding: 17px;
     /* position: absolute; */
-    /* margin: -2px; 
+/* margin: -2px; 
 }*/
 
 #startOver {
@@ -104,7 +104,7 @@ h1 {
 
 footer {
     background-color: rgba(56, 56, 56, 0.8);
-    color:#b1b1b1;
+    color: #b1b1b1;
     padding: 30px;
     height: 90px;
 }
