@@ -1,7 +1,7 @@
 // Initialize and add the map
 
 script = document.createElement('script');
-script.src = getenv(MAPS_CALL)
+script.src = getenv('MAPS_CALL')
 script.async;
 document.querySelector('head').append(script);
 
